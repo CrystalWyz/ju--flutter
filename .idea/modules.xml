@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ju/ju.iml" filepath="$PROJECT_DIR$/ju/ju.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ju/android/ju_android.iml" filepath="$PROJECT_DIR$/ju/android/ju_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ju--flutter.iml" filepath="$PROJECT_DIR$/.idea/ju--flutter.iml" />
     </modules>
   </component>
 </project>
