@@ -1,11 +1,19 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../views/home_view.dart';
 
-class HomeController extends GetxController {
-  //TODO: Implement HomeController
+class HomeController extends GetxController with GetSingleTickerProviderStateMixin {
+  late TabController tabController;
+  late RxInt bottomNaviSelected;
 
-  final count = 0.obs;
+  final List<Widget> pages = const [
+    HomeView()
+  ];
+
   @override
   void onInit() {
+    tabController = TabController(length: 5, vsync: this);
+    bottomNaviSelected = 0.obs;
     super.onInit();
   }
 
@@ -19,5 +27,7 @@ class HomeController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+  void changeBottomNaviSelect(selectedIndex) {
+    bottomNaviSelected.value = selectedIndex;
+  }
 }
