@@ -8,6 +8,7 @@ abstract class Routes {
   static const DRINK = _Paths.DRINK;
   static const ESCAPE_ROOM = _Paths.ESCAPE_ROOM;
   static const PARK_HIDE = _Paths.PARK_HIDE;
+  static const CREATE_JU = _Paths.CREATE_JU;
 }
 
 abstract class _Paths {
@@ -17,4 +18,5 @@ abstract class _Paths {
   static const DRINK = '/drink';
   static const ESCAPE_ROOM = '/escape-room';
   static const PARK_HIDE = '/park-hide';
+  static const CREATE_JU = '/create-ju';
 }

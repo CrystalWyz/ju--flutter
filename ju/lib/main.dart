@@ -17,7 +17,7 @@ void main() {
           initialRoute: AppPages.INITIAL,
           getPages: AppPages.routes,
           theme: ThemeData(
-              colorScheme: ColorScheme.light().copyWith(primary: Color.fromRGBO(100, 215, 200, 1))
+              colorScheme: const ColorScheme.light().copyWith(primary: const Color.fromRGBO(100, 215, 200, 1))
           ),
         );
       },

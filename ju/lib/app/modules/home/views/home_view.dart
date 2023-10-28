@@ -9,15 +9,15 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.ac_unit, color: Colors.white,),
+        leading: const IconButton(
+          icon: Icon(Icons.ac_unit, color: Colors.white,),
           onPressed: null,
         ),
         title: const Text('聚'),
         centerTitle: true,
-        actions: [
+        actions: const [
           IconButton(
-            icon: const Icon(Icons.search_outlined, color: Colors.white,),
+            icon: Icon(Icons.search_outlined, color: Colors.white,),
             onPressed: null,
           )
         ],
@@ -25,7 +25,7 @@ class HomeView extends GetView<HomeController> {
             isScrollable: true,
             indicatorSize: TabBarIndicatorSize.label,
             controller: controller.tabController,
-            tabs: [
+            tabs: const [
               Tab(child: Text("剧本杀")),
               Tab(child: Text("密室逃脱")),
               Tab(child: Text("公园躲猫猫")),
@@ -60,42 +60,42 @@ class HomeView extends GetView<HomeController> {
                         spacing: 20.w,
                         children: [
                           Container(
-                            padding: EdgeInsets.all(2),
+                            padding: const EdgeInsets.all(2),
                             decoration: BoxDecoration(
                                 color: Colors.black12,
                                 borderRadius: BorderRadius.circular(10)
                             ),
-                            child: Text("新手局", style: TextStyle(color: Colors.black54)),
+                            child: const Text("新手局", style: TextStyle(color: Colors.black54)),
                           ),
                           Container(
-                            padding: EdgeInsets.all(2),
+                            padding: const EdgeInsets.all(2),
                             decoration: BoxDecoration(
                                 color: Colors.black12,
                                 borderRadius: BorderRadius.circular(10)
                             ),
-                            child: Text("需要验证", style: TextStyle(color: Colors.black54)),
+                            child: const Text("需要验证", style: TextStyle(color: Colors.black54)),
                           ),
                           Container(
-                            padding: EdgeInsets.all(2),
+                            padding: const EdgeInsets.all(2),
                             decoration: BoxDecoration(
                                 color: Colors.black12,
                                 borderRadius: BorderRadius.circular(10)
                             ),
-                            child: Text("本格", style: TextStyle(color: Colors.black54)),
+                            child: const Text("本格", style: TextStyle(color: Colors.black54)),
                           ),
                           Container(
-                            padding: EdgeInsets.all(2),
+                            padding: const EdgeInsets.all(2),
                             decoration: BoxDecoration(
                                 color: Colors.black12,
                                 borderRadius: BorderRadius.circular(10)
                             ),
-                            child: Text("恐怖", style: TextStyle(color: Colors.black54)),
+                            child: const Text("恐怖", style: TextStyle(color: Colors.black54)),
                           ),
                         ],
                       )),
-                      Divider(),
-                      Padding(padding: EdgeInsets.fromLTRB(10, 0, 10, 0), child: Text("ababababababaababababababaababababababaababababababaababababababa...", style: TextStyle(fontSize: 50.sp),)),
-                      Padding(padding: EdgeInsets.fromLTRB(10, 0, 10, 0), child: Row(
+                      const Divider(),
+                      Padding(padding: const EdgeInsets.fromLTRB(10, 0, 10, 0), child: Text("ababababababa...", style: TextStyle(fontSize: 50.sp),)),
+                      const Padding(padding: EdgeInsets.fromLTRB(10, 0, 10, 0), child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Icon(Icons.girl_outlined, color: Color.fromRGBO(255, 184, 198, 1)),
@@ -109,61 +109,71 @@ class HomeView extends GetView<HomeController> {
                 )
               ]
             ),
-            ListTile(
+            const ListTile(
               title: Text("密室逃脱脱脱"),
             ),
-            ListTile(
+            const ListTile(
               title: Text("公园躲猫猫"),
             ),
-            ListTile(
+            const ListTile(
               title: Text("干一杯杯杯"),
             ),
-            ListTile(
+            const ListTile(
               title: Text("待补充"),
             ),
           ]
       ),
-      bottomNavigationBar: Obx(() => BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        fixedColor: Color.fromRGBO(100, 215, 200, 1),
-        currentIndex: controller.bottomNaviSelected.value,
-        onTap: (selectedIndex) => controller.changeBottomNaviSelect(selectedIndex),
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home_max_outlined),
-              label: "首页"
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.spa_outlined),
-              label: "待定"
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.ac_unit),
-              label: "聚一个"
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.add_alarm_outlined),
-              label: "消息"
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle_outlined),
-              label: "我的"
-          ),
-        ],
+      bottomNavigationBar: Obx(() => BottomAppBar(
+        color: Colors.white,
+        shape: const CircularNotchedRectangle(),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            IconButton(
+                icon: Icon(Icons.home_max_outlined, color: controller.bottomNaviSelected.value == 0 ? const Color.fromRGBO(100, 215, 100, 1) : null),
+                onPressed: () {
+                  controller.bottomNaviSelected.value = 0;
+                  Get.toNamed("/home");
+                }
+            ),
+            IconButton(
+                icon: Icon(Icons.spa_outlined, color: controller.bottomNaviSelected.value == 1 ? const Color.fromRGBO(100, 215, 100, 1) : null),
+                onPressed: () {
+                  controller.bottomNaviSelected.value = 1;
+                  Get.toNamed("/home");
+                }
+            ),
+            const Text(""),
+            IconButton(
+                icon: Icon(Icons.add_alarm_outlined, color: controller.bottomNaviSelected.value == 2 ? const Color.fromRGBO(100, 215, 100, 1) : null),
+                onPressed: () {
+                  controller.bottomNaviSelected.value = 2;
+                  Get.toNamed("/home");
+                }
+            ),
+            IconButton(
+                icon: Icon(Icons.account_circle_outlined, color: controller.bottomNaviSelected.value == 3 ? const Color.fromRGBO(100, 215, 100, 1) : null),
+                onPressed: () {
+                  controller.bottomNaviSelected.value = 3;
+                  Get.toNamed("/home");
+                }
+            ),
+          ],
+        ),
       )),
       floatingActionButton: Container(
         margin: EdgeInsets.fromLTRB(0, 30.h, 0, 0),
         height: 175.w,
         width: 175.w,
-        padding: EdgeInsets.all(2),
+        padding: const EdgeInsets.all(2),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(30)
         ),
         child: FloatingActionButton(
-          child: Icon(Icons.add),
+          child: const Icon(Icons.add),
           onPressed: () {
-
+            Get.toNamed("/create-ju");
           },
         ),
       ),

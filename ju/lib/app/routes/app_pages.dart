@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/create_ju/bindings/create_ju_binding.dart';
+import '../modules/create_ju/views/create_ju_view.dart';
 import '../modules/drink/bindings/drink_binding.dart';
 import '../modules/drink/views/drink_view.dart';
 import '../modules/escape_room/bindings/escape_room_binding.dart';
@@ -43,6 +45,11 @@ class AppPages {
       name: _Paths.PARK_HIDE,
       page: () => const ParkHideView(),
       binding: ParkHideBinding(),
+    ),
+    GetPage(
+      name: _Paths.CREATE_JU,
+      page: () => const CreateJuView(),
+      binding: CreateJuBinding(),
     ),
   ];
 }
