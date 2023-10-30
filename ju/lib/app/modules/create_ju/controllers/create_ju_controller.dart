@@ -6,6 +6,8 @@ class CreateJuController extends GetxController {
   GlobalKey createJuKey = GlobalKey<FormState>();
   TextEditingController titleController = TextEditingController();
   TextEditingController contentController = TextEditingController();
+  TextEditingController boyController = TextEditingController();
+  TextEditingController girlController = TextEditingController();
 
   @override
   void onInit() {
