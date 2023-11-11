@@ -9,6 +9,9 @@ abstract class Routes {
   static const ESCAPE_ROOM = _Paths.ESCAPE_ROOM;
   static const PARK_HIDE = _Paths.PARK_HIDE;
   static const CREATE_JU = _Paths.CREATE_JU;
+  static const LOGIN = _Paths.LOGIN;
+  static const SEARCH = _Paths.SEARCH;
+  static const MURDER_MYSTERY_DETAIL = _Paths.MURDER_MYSTERY_DETAIL;
 }
 
 abstract class _Paths {
@@ -19,4 +22,7 @@ abstract class _Paths {
   static const ESCAPE_ROOM = '/escape-room';
   static const PARK_HIDE = '/park-hide';
   static const CREATE_JU = '/create-ju';
+  static const LOGIN = '/login';
+  static const SEARCH = '/search';
+  static const MURDER_MYSTERY_DETAIL = '/murder-mystery-detail';
 }

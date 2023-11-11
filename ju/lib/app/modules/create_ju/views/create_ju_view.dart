@@ -1,108 +1,160 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'package:ju/app/modules/model/tag.dart';
+import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:get/get.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../controllers/create_ju_controller.dart';
 
 class CreateJuView extends GetView<CreateJuController> {
   const CreateJuView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('CreateJuView'),
+        title: const Text('聚一个'),
         centerTitle: true,
       ),
       body: Form(
-        key: controller.createJuKey,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        child: Column(
-          children: <Widget>[
-            TextFormField(
-              autofocus: true,
-              controller: controller.titleController,
-              decoration: const InputDecoration(
-                labelText: "聚主题",
-                hintText: "聚一个!",
-                icon: Icon(Icons.accessibility_new_outlined)
+          key: controller.createJuKey,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          child: Column(
+            children: <Widget>[
+              TextFormField(
+                autofocus: true,
+                controller: controller.titleController,
+                decoration: const InputDecoration(
+                    labelText: "聚主题",
+                    hintText: "聚一个!",
+                    icon: Icon(Icons.accessibility_new_outlined)),
+                validator: (v) => v!.trim().isNotEmpty ? null : "想一个聚名字吧～",
               ),
-              validator: (v) => v!.trim().isNotEmpty ? null : "想一个聚名字吧～",
-            ),
-            TextFormField(
-              autofocus: false,
-              controller: controller.contentController,
-              decoration: const InputDecoration(
-                  labelText: "描述",
-                  hintText: "阿巴阿巴",
-                  icon: Icon(Icons.account_balance_wallet_outlined)
+              SizedBox(
+                height: 10.h,
               ),
-              maxLines: 3,
-              validator: (v) => v!.trim().isNotEmpty ? null : "想一个聚描述字吧～",
-            ),
-            Row(
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: TextFormField(
-                  autofocus: false,
-                  controller: controller.boyController,
-                  keyboardType: TextInputType.number,
-                  inputFormatters: [
-                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
-                  ],
-                  style: const TextStyle(color: Color.fromRGBO(135, 206, 250, 1)),
-                  decoration: const InputDecoration(
-                      labelText: "男生",
-                      hintText: "0",
-                      icon: Icon(Icons.boy_outlined, color: Color.fromRGBO(135, 206, 250, 1))
+              SizedBox(
+                  child: Row(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(5),
+                    child: Text(
+                      "标签",
+                    ),
                   ),
-                  validator: (v) => v!.trim().isNotEmpty ? null : "想一个男生人数吧～",
-                ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: TextFormField(
-                  autofocus: false,
-                  controller: controller.girlController,
-                  keyboardType: TextInputType.number,
-                  inputFormatters: [
-                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
-                  ],
-                  style: const TextStyle(color: Color.fromRGBO(255, 184, 198, 1)),
-                  decoration: const InputDecoration(
-                      labelText: "女生",
-                      hintText: "0",
-                      icon: Icon(Icons.girl_outlined, color: Color.fromRGBO(255, 184, 198, 1))
+                  Expanded(
+                      child: MultiSelectBottomSheetField<Tag?>(
+                    initialChildSize: 0.7,
+                    maxChildSize: 0.95,
+                    title: const Text("标签"),
+                    buttonText: const Text("标签"),
+                    items: controller.items,
+                    searchable: true,
+                    onConfirm: (values) {
+                      controller.selectedTags.value = values;
+                    },
+                    chipDisplay: MultiSelectChipDisplay(
+                      onTap: (item) {
+                        controller.selectedTags.remove(item);
+                      },
+                    ),
+                  ))
+                ],
+              )),
+              TextFormField(
+                autofocus: false,
+                controller: controller.contentController,
+                decoration: const InputDecoration(
+                    labelText: "描述",
+                    hintText: "阿巴阿巴",
+                    icon: Icon(Icons.account_balance_wallet_outlined)),
+                maxLines: 3,
+                validator: (v) => v!.trim().isNotEmpty ? null : "想一个聚描述字吧～",
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: TextFormField(
+                      autofocus: false,
+                      controller: controller.boyController,
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [
+                        FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
+                      ],
+                      style: const TextStyle(
+                          color: Color.fromRGBO(135, 206, 250, 1)),
+                      decoration: const InputDecoration(
+                          labelText: "男生",
+                          hintText: "0",
+                          icon: Icon(Icons.boy_outlined,
+                              color: Color.fromRGBO(135, 206, 250, 1))),
+                      validator: (v) =>
+                          v!.trim().isNotEmpty ? null : "想一个男生人数吧～",
+                    ),
                   ),
-                  validator: (v) => v!.trim().isNotEmpty ? null : "想一个女生人数吧～",
-                ),
-                )
-              ],
-            ),
-            Padding(
-                padding: const EdgeInsets.only(top: 26),
+                  Expanded(
+                    flex: 1,
+                    child: TextFormField(
+                      autofocus: false,
+                      controller: controller.girlController,
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [
+                        FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
+                      ],
+                      style: const TextStyle(
+                          color: Color.fromRGBO(255, 184, 198, 1)),
+                      decoration: const InputDecoration(
+                          labelText: "女生",
+                          hintText: "0",
+                          icon: Icon(Icons.girl_outlined,
+                              color: Color.fromRGBO(255, 184, 198, 1))),
+                      validator: (v) =>
+                          v!.trim().isNotEmpty ? null : "想一个女生人数吧～",
+                    ),
+                  )
+                ],
+              ),
+              Obx(() => Padding(
+                  padding: const EdgeInsets.fromLTRB(5, 20, 10, 0),
+                  child: OverflowBar(
+                    alignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      const Padding(
+                          padding: EdgeInsets.only(right: 10),
+                          child: Text("审核")),
+                      Switch(
+                        value: controller.filterSwitch.value,
+                        onChanged: (value) {
+                          controller.filterSwitch.value = value;
+                        },
+                      )
+                    ],
+                  )
+              )),
+              Padding(
+                padding: const EdgeInsets.all(16),
                 child: Row(
                   children: <Widget>[
                     Expanded(
                         child: ElevatedButton(
-                          child: const Padding(
-                            padding: EdgeInsets.all(16),
-                            child: Text("冲")
-                          ),
-                          onPressed: () => {
-                            if((controller.createJuKey.currentState as FormState).validate()) {
-                              // TODO 发送请求
-                            }
-                          },
-                        )
-                    )
+                      child: const Padding(
+                          padding: EdgeInsets.all(16), child: Text("冲")),
+                      onPressed: () => {
+                        if ((controller.createJuKey.currentState as FormState)
+                            .validate()) {
+                            // TODO 发送请求
+
+                            // 返回列表页
+                            Get.toNamed("/home")
+                          }
+                      },
+                    ))
                   ],
                 ),
-            )
-          ],
-        )
-      ),
+              )
+            ],
+          )),
     );
   }
 }

@@ -13,11 +13,37 @@ class HomeView extends GetView<HomeController> {
           icon: Icon(Icons.ac_unit, color: Colors.white,),
           onPressed: null,
         ),
-        title: const Text('聚'),
+        title: InkWell(
+          child: Container(
+            width: 800.w,
+            height: 96.h,
+            decoration: BoxDecoration(
+              color: const Color.fromRGBO(246, 246, 246, 1),
+              borderRadius: BorderRadius.circular(30),
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: EdgeInsets.fromLTRB(34.w, 0,
+                      10.w, 0),
+                  child: const Icon(Icons.search,color: Colors.black54),
+                ),
+                Text("窗边的女人",
+                    style: TextStyle(
+                        color: Colors.black54,
+                        fontSize: 32.sp))
+              ],
+            ),
+          ),
+          onTap: () {
+            Get.toNamed("/search");
+          },
+        ),
         centerTitle: true,
         actions: const [
           IconButton(
-            icon: Icon(Icons.search_outlined, color: Colors.white,),
+            icon: Icon(Icons.category_outlined, color: Colors.white,),
             onPressed: null,
           )
         ],
