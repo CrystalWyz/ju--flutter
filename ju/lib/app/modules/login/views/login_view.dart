@@ -10,70 +10,71 @@ class LoginView extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('登录'),
-        centerTitle: true,
+      body: SafeArea(
+        child: ListView(
+          padding: EdgeInsets.symmetric(horizontal: 48.w),
+          children: <Widget>[
+            SizedBox(height: 380.h),
+            Column(
+              children: <Widget>[
+                Image.asset('assets/diamond.png'),
+                const SizedBox(height: 16.0),
+                Text(
+                  '聚',
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
+              ],
+            ),
+            const SizedBox(height: 120.0),
+            TextFormField(
+              controller: controller.userNameController,
+              decoration: const InputDecoration(
+                labelText: '账号',
+              ),
+              validator: (v) => v!.trim().isNotEmpty ? null : "请输入账号",
+            ),
+            SizedBox(height: 14.h),
+            TextFormField(
+              controller: controller.passwordController,
+              decoration: const InputDecoration(
+                labelText: '密码',
+              ),
+              obscureText: true,
+              validator: (v) => v!.trim().isNotEmpty ? null : "请输入密码",
+            ),
+            SizedBox(height: 14.h),
+            OverflowBar(
+              alignment: MainAxisAlignment.end,
+              children: <Widget>[
+                TextButton(
+                  child: const Text('注册'),
+                  onPressed: () {
+                    controller.userNameController.clear();
+                    controller.passwordController.clear();
+                  },
+                  style: TextButton.styleFrom(
+                    shape: const BeveledRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(7.0)),
+                    ),
+                  ),
+                ),
+                ElevatedButton(
+                  child: const Text('登录'),
+                  onPressed: () {
+                    Get.toNamed("/home");
+                  },
+                  style: ElevatedButton.styleFrom(
+                    elevation: 2.0,
+                    shape: const BeveledRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(7.0)),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
-      body: Column(
-        children: <Widget>[
-          SizedBox(
-            height: 300.h,
-          ),
-          const FlutterLogo(size: 100),
-          SizedBox(
-            height: 100.h,
-          ),
-          Padding(
-              padding: EdgeInsets.only(right: 20.w),
-              child: TextFormField(
-                autofocus: true,
-                controller: controller.userNameController,
-                decoration: const InputDecoration(
-                    labelText: "账号",
-                    hintText: "账号",
-                    icon: Icon(Icons.account_box_outlined)
-                ),
-                validator: (v) => v!.trim().isNotEmpty ? null : "请输入账号",
-              ),
-
-          ),
-          Padding(
-              padding: EdgeInsets.all(20.w),
-              child: TextFormField(
-                autofocus: false,
-                controller: controller.passwordController,
-                decoration: const InputDecoration(
-                    labelText: "密码",
-                    hintText: "密码",
-                    icon: Icon(Icons.password_outlined)
-                ),
-                validator: (v) => v!.trim().isNotEmpty ? null : "请输入密码",
-                obscureText: true,
-              )
-          ),
-          SizedBox(
-            height: 50.h,
-          ),
-        Padding(
-          padding: EdgeInsets.only(right: 20.w),
-          child: OverflowBar(
-            alignment: MainAxisAlignment.end,
-            children: <Widget>[
-              TextButton(
-                  onPressed: () {},
-                  child: const Text("注册")
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Get.toNamed("/home");
-                },
-                child: const Text("登录"),
-              )
-            ],
-          )
-        )
-        ],
-      )
     );
   }
 }
