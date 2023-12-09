@@ -24,10 +24,12 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.LOGIN;
+  static const INITIAL = Routes.HOME;
 
   static final routes = [
     GetPage(
+      transition: Transition.fade,
+      transitionDuration: const Duration(milliseconds: 800),
       name: _Paths.HOME,
       page: () => const HomeView(),
       binding: HomeBinding(),
@@ -58,6 +60,8 @@ class AppPages {
       binding: CreateJuBinding(),
     ),
     GetPage(
+      transition: Transition.fadeIn,
+      transitionDuration: const Duration(milliseconds: 800),
       name: _Paths.LOGIN,
       page: () => const LoginView(),
       binding: LoginBinding(),

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:ju/app/modules/utils/storage_util.dart';
+import '../../utils/https_util.dart';
 import 'package:get/get.dart';
-
+import '../../model/user.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
@@ -47,7 +48,6 @@ class LoginView extends GetView<LoginController> {
               alignment: MainAxisAlignment.end,
               children: <Widget>[
                 TextButton(
-                  child: const Text('注册'),
                   onPressed: () {
                     controller.userNameController.clear();
                     controller.passwordController.clear();
@@ -57,11 +57,19 @@ class LoginView extends GetView<LoginController> {
                       borderRadius: BorderRadius.all(Radius.circular(7.0)),
                     ),
                   ),
+                  child: const Text('注册'),
                 ),
                 ElevatedButton(
-                  child: const Text('登录'),
-                  onPressed: () {
-                    Get.toNamed("/home");
+                  onPressed: () async {
+                    var response = await HttpsUtil.post("/api/v1/authorities/login", data: {
+                      "username": controller.userNameController.text,
+                      "password": controller.passwordController.text
+                    });
+                    if (response != null) {
+                      User user = User.fromJson(response.data['data']);
+                      await StorageUtil.set("userInfo", user);
+                      Get.toNamed("/home");
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     elevation: 2.0,
@@ -69,6 +77,7 @@ class LoginView extends GetView<LoginController> {
                       borderRadius: BorderRadius.all(Radius.circular(7.0)),
                     ),
                   ),
+                  child: const Text('登录'),
                 ),
               ],
             ),

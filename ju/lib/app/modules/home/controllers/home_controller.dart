@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../utils/storage_util.dart';
 import '../views/home_view.dart';
 
 class HomeController extends GetxController with GetSingleTickerProviderStateMixin {
@@ -18,7 +19,11 @@ class HomeController extends GetxController with GetSingleTickerProviderStateMix
   }
 
   @override
-  void onReady() {
+  Future<void> onReady() async {
+    var userInfo = await StorageUtil.get("userInfo");
+    if(userInfo == null) {
+      Get.offNamed("/login");
+    }
     super.onReady();
   }
 
