@@ -7,7 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 class HttpsUtil {
 
-  static String baseUrl = "http://192.168.3.137:8075";
+  static String baseUrl = "http://192.168.3.127:8075";
   static final cookieJar = CookieJar();
   static final options = BaseOptions(
     baseUrl: baseUrl,
@@ -15,22 +15,29 @@ class HttpsUtil {
     receiveTimeout: const Duration(seconds: 3),
 
   );
-  static Dio dio = Dio(options);
-  // 为dio对象添加拦截器
-  static Interceptors interceptors = dio.interceptors;
+  static Dio? _dio;
 
   static Future get(apiUrl) async {
     try {
-      var response = await dio.get(apiUrl);
+      var response = await getInstance().get(apiUrl);
       return response;
     } catch (e) {
       return null;
     }
   }
 
+  static Dio getInstance() {
+    if(_dio == null) {
+      _dio = Dio(options);
+      _dio!.interceptors.add(CookieManager(cookieJar));
+    }
+
+    return _dio!;
+  }
+
   static Future post(String apiUrl,{Map? data, Options? options}) async {
     try {
-      var response = await dio.post(apiUrl,data:data, options: options);
+      var response = await getInstance().post(apiUrl,data:data, options: options);
       return response;
     } on DioException catch (e) {
       if (e.response != null) {
