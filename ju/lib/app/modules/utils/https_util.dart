@@ -1,16 +1,23 @@
 import 'package:dio/dio.dart';
+import 'package:dio/dio.dart';
+import 'package:cookie_jar/cookie_jar.dart';
+import 'package:dio/dio.dart';
+import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class HttpsUtil {
 
-  static String baseUrl = "http://59.110.34.78:8075";
-
+  static String baseUrl = "http://192.168.3.137:8075";
+  static final cookieJar = CookieJar();
   static final options = BaseOptions(
     baseUrl: baseUrl,
     connectTimeout: const Duration(seconds: 5),
     receiveTimeout: const Duration(seconds: 3),
+
   );
   static Dio dio = Dio(options);
+  // 为dio对象添加拦截器
+  static Interceptors interceptors = dio.interceptors;
 
   static Future get(apiUrl) async {
     try {
@@ -21,9 +28,9 @@ class HttpsUtil {
     }
   }
 
-  static Future post(String apiUrl,{Map? data}) async {
+  static Future post(String apiUrl,{Map? data, Options? options}) async {
     try {
-      var response = await dio.post(apiUrl,data:data);
+      var response = await dio.post(apiUrl,data:data, options: options);
       return response;
     } on DioException catch (e) {
       if (e.response != null) {

@@ -11,7 +11,7 @@ class CreateJuController extends GetxController {
   TextEditingController contentController = TextEditingController();
   TextEditingController boyController = TextEditingController();
   TextEditingController girlController = TextEditingController();
-  RxBool filterSwitch = false.obs;
+  RxBool auditSwitch = false.obs;
 
   static List<Tag?> tagsList = [
     Tag(id: 1, tagName: "吃饭",tagType: 1, serviceType: 1),

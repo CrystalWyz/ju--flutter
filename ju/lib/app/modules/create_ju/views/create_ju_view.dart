@@ -1,9 +1,12 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ju/app/modules/model/tag.dart';
+import 'package:ju/app/modules/utils/https_util.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../utils/storage_util.dart';
 import '../controllers/create_ju_controller.dart';
 
 class CreateJuView extends GetView<CreateJuController> {
@@ -43,7 +46,7 @@ class CreateJuView extends GetView<CreateJuController> {
                     ),
                   ),
                   Expanded(
-                      child: MultiSelectBottomSheetField<Tag?>(
+                    child: MultiSelectBottomSheetField<Tag?>(
                     initialChildSize: 0.7,
                     maxChildSize: 0.95,
                     title: const Text("标签"),
@@ -124,9 +127,9 @@ class CreateJuView extends GetView<CreateJuController> {
                           padding: EdgeInsets.only(right: 10),
                           child: Text("审核")),
                       Switch(
-                        value: controller.filterSwitch.value,
+                        value: controller.auditSwitch.value,
                         onChanged: (value) {
-                          controller.filterSwitch.value = value;
+                          controller.auditSwitch.value = value;
                         },
                       )
                     ],
@@ -140,13 +143,27 @@ class CreateJuView extends GetView<CreateJuController> {
                         child: ElevatedButton(
                       child: const Padding(
                           padding: EdgeInsets.all(16), child: Text("冲")),
-                      onPressed: () => {
+                      onPressed: () async {
+                        var userInfo = await StorageUtil.get("userInfo");
                         if ((controller.createJuKey.currentState as FormState)
                             .validate()) {
-                            // TODO 发送请求
-
+                            // 发送请求
+                            var response = await HttpsUtil.post("/api/v1/murderMysteries", data: {
+                              "title" : controller.titleController.text,
+                              "description" : controller.contentController.text,
+                              "boyParticipantNum" : controller.boyController.text,
+                              "girlParticipantNum" : controller.girlController.text,
+                              "config" : {
+                                "audit" : controller.auditSwitch.value,
+                              }
+                            },
+                            options: Options(
+                              headers: {
+                                "Authorization": userInfo["token"]
+                              }));
+                            print(response);
                             // 返回列表页
-                            Get.toNamed("/home")
+                            Get.toNamed("/home");
                           }
                       },
                     ))
