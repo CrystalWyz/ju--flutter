@@ -17,7 +17,7 @@ void main() {
           initialRoute: AppPages.INITIAL,
           getPages: AppPages.routes,
           theme: ThemeData(
-              inputDecorationTheme: InputDecorationTheme(
+              inputDecorationTheme: const InputDecorationTheme(
                 focusedBorder: CutCornersBorder(
                   borderSide: BorderSide(
                     width: 2.0,

@@ -1,13 +1,11 @@
 import 'package:dio/dio.dart';
-import 'package:dio/dio.dart';
 import 'package:cookie_jar/cookie_jar.dart';
-import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class HttpsUtil {
 
-  static String baseUrl = "http://192.168.3.127:8075";
+  static String baseUrl = "http://192.168.3.123:8075";
   static final cookieJar = CookieJar();
   static final options = BaseOptions(
     baseUrl: baseUrl,

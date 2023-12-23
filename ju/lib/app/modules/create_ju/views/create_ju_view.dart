@@ -161,9 +161,12 @@ class CreateJuView extends GetView<CreateJuController> {
                               headers: {
                                 "Authorization": userInfo["token"]
                               }));
-                            print(response);
-                            // 返回列表页
-                            Get.toNamed("/home");
+                            if(response != null) {
+                              // 清除表单数据
+                              (controller.createJuKey.currentState as FormState).reset();
+                              // 返回列表页
+                              Get.toNamed("/home");
+                            }
                           }
                       },
                     ))

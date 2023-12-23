@@ -37,6 +37,10 @@ class CreateJuController extends GetxController {
 
   @override
   void onClose() {
+    titleController.dispose();
+    contentController.dispose();
+    boyController.dispose();
+    girlController.dispose();
     super.onClose();
   }
 }
