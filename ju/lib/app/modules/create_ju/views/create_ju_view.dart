@@ -156,16 +156,10 @@ class CreateJuView extends GetView<CreateJuController> {
                               "config" : {
                                 "audit" : controller.auditSwitch.value,
                               }
-                            },
-                            options: Options(
-                              headers: {
-                                "Authorization": userInfo["token"]
-                              }));
+                            });
                             if(response != null) {
-                              // 清除表单数据
-                              (controller.createJuKey.currentState as FormState).reset();
                               // 返回列表页
-                              Get.toNamed("/home");
+                              Get.back();
                             }
                           }
                       },

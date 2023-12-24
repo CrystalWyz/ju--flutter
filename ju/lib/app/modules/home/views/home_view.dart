@@ -64,76 +64,48 @@ class HomeView extends GetView<HomeController> {
           controller: controller.tabController,
           children: [
             ListView(
-              children: [
-                Card(
-                  shape: RoundedRectangleBorder(
+              children: controller.pageInfo.map((item) => Card(
+                shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.w)
-                  ),
-                  elevation: 10,
-                  margin: const EdgeInsets.all(10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Padding(
-                              padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                              child: Text("窗边的女人", style: TextStyle(fontSize: 70.sp)),
-                          )
-                        ],
-                      ),
-                      Padding(padding: EdgeInsets.fromLTRB(10, 0, 0, 0), child: Wrap(
-                        spacing: 20.w,
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.all(2),
-                            decoration: BoxDecoration(
-                                color: Colors.black12,
-                                borderRadius: BorderRadius.circular(10)
-                            ),
-                            child: const Text("新手局", style: TextStyle(color: Colors.black54)),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.all(2),
-                            decoration: BoxDecoration(
-                                color: Colors.black12,
-                                borderRadius: BorderRadius.circular(10)
-                            ),
-                            child: const Text("需要验证", style: TextStyle(color: Colors.black54)),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.all(2),
-                            decoration: BoxDecoration(
-                                color: Colors.black12,
-                                borderRadius: BorderRadius.circular(10)
-                            ),
-                            child: const Text("本格", style: TextStyle(color: Colors.black54)),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.all(2),
-                            decoration: BoxDecoration(
-                                color: Colors.black12,
-                                borderRadius: BorderRadius.circular(10)
-                            ),
-                            child: const Text("恐怖", style: TextStyle(color: Colors.black54)),
-                          ),
-                        ],
-                      )),
-                      const Divider(),
-                      Padding(padding: const EdgeInsets.fromLTRB(10, 0, 10, 0), child: Text("ababababababa...", style: TextStyle(fontSize: 50.sp),)),
-                      const Padding(padding: EdgeInsets.fromLTRB(10, 0, 10, 0), child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Icon(Icons.girl_outlined, color: Color.fromRGBO(255, 184, 198, 1)),
-                          Text("2/3"),
-                          Icon(Icons.boy_outlined, color: Color.fromRGBO(135, 206, 250, 1)),
-                          Text("3/3"),
-                        ],
-                      ),)
-                    ],
-                  ),
-                )
-              ]
+                ),
+                elevation: 10,
+                margin: const EdgeInsets.all(10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                          child: Text(item.title!, style: TextStyle(fontSize: 70.sp)),
+                        )
+                      ],
+                    ),
+                    Padding(padding: EdgeInsets.fromLTRB(10, 0, 0, 0), child: Wrap(
+                      spacing: 20.w,
+                      children: item.tags!.map((tag) => Container(
+                        padding: const EdgeInsets.all(2),
+                        decoration: BoxDecoration(
+                            color: Colors.black12,
+                            borderRadius: BorderRadius.circular(10)
+                        ),
+                        child: Text(tag, style: TextStyle(color: Colors.black54)),
+                      )).toList()
+                    )),
+                    const Divider(),
+                    Padding(padding: const EdgeInsets.fromLTRB(10, 0, 10, 0), child: Text(item.description!, style: TextStyle(fontSize: 50.sp),)),
+                    Padding(padding: EdgeInsets.fromLTRB(10, 0, 10, 0), child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Icon(Icons.girl_outlined, color: Color.fromRGBO(255, 184, 198, 1)),
+                        Text("${item.girlNum!}/${item.girlParticipantNum!}"),
+                        Icon(Icons.boy_outlined, color: Color.fromRGBO(135, 206, 250, 1)),
+                        Text("${item.boyNum}/${item.boyParticipantNum}"),
+                      ],
+                    ),)
+                  ],
+                ),
+              )).toList()
             ),
             const ListTile(
               title: Text("密室逃脱脱脱"),
