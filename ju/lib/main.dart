@@ -17,6 +17,11 @@ void main() {
           initialRoute: AppPages.INITIAL,
           getPages: AppPages.routes,
           theme: ThemeData(
+              primarySwatch: Colors.blue,
+              colorScheme: ColorScheme.fromSeed(
+                  seedColor: Colors.purple,
+                  brightness: Brightness.light,
+                  surfaceTint: Colors.transparent),
               inputDecorationTheme: const InputDecorationTheme(
                 focusedBorder: CutCornersBorder(
                   borderSide: BorderSide(
@@ -25,7 +30,6 @@ void main() {
                 ),
                 border: CutCornersBorder(), // Replace code
               ),
-              colorScheme: const ColorScheme.light().copyWith(primary: const Color.fromRGBO(100, 215, 200, 1))
           ),
         );
       },

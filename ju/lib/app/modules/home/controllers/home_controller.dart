@@ -19,7 +19,7 @@ class HomeController extends GetxController with GetSingleTickerProviderStateMix
 
   @override
   void onInit() {
-    tabController = TabController(length: 5, vsync: this);
+    tabController = TabController(length: 4, vsync: this);
     bottomNaviSelected = 0.obs;
 
     getMurderMysteryPageData();
@@ -46,9 +46,10 @@ class HomeController extends GetxController with GetSingleTickerProviderStateMix
   }
 
   getMurderMysteryPageData() async {
-    var response = await HttpsUtil.get("/api/v1/murderMysteries/current/page?page=${page}&size=${size}");
+    var response = await HttpsUtil.get("/api/v1/murderMysteries/page?page=${page}&size=${size}");
     if(response != null) {
       pageInfo.addAll(response.data['data'].map<MurderMysteryPageInfo>((info) => MurderMysteryPageInfo.fromJson(info)).toList());
+      print(pageInfo);
       page++;
     }
   }

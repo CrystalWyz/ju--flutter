@@ -13,9 +13,9 @@ class MurderMysteryDetailView extends GetView<MurderMysteryDetailController> {
         title: const Text('MurderMysteryDetailView'),
         centerTitle: true,
       ),
-      body: const Center(
+      body: Center(
         child: Text(
-          'MurderMysteryDetailView is working',
+          '${Get.arguments}',
           style: TextStyle(fontSize: 20),
         ),
       ),

@@ -55,6 +55,7 @@ class AppPages {
       binding: ParkHideBinding(),
     ),
     GetPage(
+      transition: Transition.fadeIn,
       name: _Paths.CREATE_JU,
       page: () => const CreateJuView(),
       binding: CreateJuBinding(),
@@ -72,6 +73,7 @@ class AppPages {
       binding: SearchBinding(),
     ),
     GetPage(
+      transition: Transition.fadeIn,
       name: _Paths.MURDER_MYSTERY_DETAIL,
       page: () => const MurderMysteryDetailView(),
       binding: MurderMysteryDetailBinding(),

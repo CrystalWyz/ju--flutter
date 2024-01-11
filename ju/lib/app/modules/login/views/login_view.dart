@@ -18,7 +18,7 @@ class LoginView extends GetView<LoginController> {
             SizedBox(height: 380.h),
             Column(
               children: <Widget>[
-                Image.asset('assets/diamond.png'),
+                Hero(tag: "loginHero", child: Image.asset('assets/diamond.png')),
                 const SizedBox(height: 16.0),
                 Text(
                   '聚',
