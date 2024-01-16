@@ -184,7 +184,7 @@ class HomeView extends GetView<HomeController> {
                 IconButton(
                     icon: Icon(Icons.home_max_outlined,
                         color: controller.bottomNaviSelected.value == 0
-                            ? const Color.fromRGBO(100, 215, 100, 1)
+                            ? Theme.of(context).primaryColorDark
                             : null),
                     onPressed: () {
                       controller.bottomNaviSelected.value = 0;
@@ -194,7 +194,7 @@ class HomeView extends GetView<HomeController> {
                 IconButton(
                     icon: Icon(Icons.spa_outlined,
                         color: controller.bottomNaviSelected.value == 1
-                            ? const Color.fromRGBO(100, 215, 100, 1)
+                            ? Theme.of(context).primaryColorDark
                             : null),
                     onPressed: () {
                       controller.bottomNaviSelected.value = 1;
@@ -205,7 +205,7 @@ class HomeView extends GetView<HomeController> {
                 IconButton(
                     icon: Icon(Icons.add_alarm_outlined,
                         color: controller.bottomNaviSelected.value == 2
-                            ? const Color.fromRGBO(100, 215, 100, 1)
+                            ? Theme.of(context).primaryColorDark
                             : null),
                     onPressed: () {
                       controller.bottomNaviSelected.value = 2;
@@ -215,7 +215,7 @@ class HomeView extends GetView<HomeController> {
                 IconButton(
                     icon: Icon(Icons.account_circle_outlined,
                         color: controller.bottomNaviSelected.value == 3
-                            ? const Color.fromRGBO(100, 215, 100, 1)
+                            ? Theme.of(context).primaryColorDark
                             : null),
                     onPressed: () {
                       controller.bottomNaviSelected.value = 3;
