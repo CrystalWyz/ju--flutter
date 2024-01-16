@@ -28,7 +28,7 @@ class AppPages {
 
   static final routes = [
     GetPage(
-      transition: Transition.fade,
+      transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 800),
       name: _Paths.HOME,
       page: () => const HomeView(),

@@ -30,14 +30,20 @@ class LoginView extends GetView<LoginController> {
             TextFormField(
               controller: controller.userNameController,
               decoration: const InputDecoration(
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(15.0))
+                ),
                 labelText: '账号',
               ),
               validator: (v) => v!.trim().isNotEmpty ? null : "请输入账号",
             ),
-            SizedBox(height: 14.h),
+            SizedBox(height: 30.h),
             TextFormField(
               controller: controller.passwordController,
               decoration: const InputDecoration(
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(15.0))
+                ),
                 labelText: '密码',
               ),
               obscureText: true,
@@ -52,13 +58,14 @@ class LoginView extends GetView<LoginController> {
                     controller.userNameController.clear();
                     controller.passwordController.clear();
                   },
-                  style: TextButton.styleFrom(
-                    shape: const BeveledRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(7.0)),
-                    ),
-                  ),
+                  // style: TextButton.styleFrom(
+                  //   shape: const BeveledRectangleBorder(
+                  //     borderRadius: BorderRadius.all(Radius.circular(7.0)),
+                  //   ),
+                  // ),
                   child: const Text('注册'),
                 ),
+                const SizedBox(width: 16.0),
                 ElevatedButton(
                   onPressed: () async {
                     var response = await HttpsUtil.post("/api/v1/authorities/login", data: {
@@ -71,12 +78,6 @@ class LoginView extends GetView<LoginController> {
                       Get.toNamed("/home");
                     }
                   },
-                  style: ElevatedButton.styleFrom(
-                    elevation: 2.0,
-                    shape: const BeveledRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(7.0)),
-                    ),
-                  ),
                   child: const Text('登录'),
                 ),
               ],
