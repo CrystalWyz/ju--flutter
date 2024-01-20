@@ -1,16 +1,16 @@
 class MurderMysteryUser {
 
-  int? id;
+  int? userId;
   String? username;
   String? gender;
   int? blemishCount;
   int? grade;
   int? count;
 
-  MurderMysteryUser({this.id, this.username, this.gender, this.blemishCount,this.grade,this.count});
+  MurderMysteryUser({this.userId, this.username, this.gender, this.blemishCount,this.grade,this.count});
 
   MurderMysteryUser.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    userId = json['userId'];
     username = json['username'];
     gender = json['gender'];
     blemishCount = json['blemishCount'];
@@ -20,7 +20,7 @@ class MurderMysteryUser {
 
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
-    data['id'] = id;
+    data['userId'] = userId;
     data['username'] = username;
     data['gender'] = gender;
     data['blemishCount'] = blemishCount;

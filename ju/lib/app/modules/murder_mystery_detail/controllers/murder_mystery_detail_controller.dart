@@ -4,11 +4,11 @@ import 'package:ju/app/modules/utils/https_util.dart';
 
 class MurderMysteryDetailController extends GetxController {
 
-  // late Rx<MurderMysteryDetail>? murderMysteryDetail;
+  Rx<MurderMysteryDetail> murderMysteryDetail = MurderMysteryDetail().obs;
 
   @override
   void onInit() async {
-    // await getMurderMysteryDetail();
+    await getMurderMysteryDetail();
     super.onInit();
   }
 
@@ -22,10 +22,10 @@ class MurderMysteryDetailController extends GetxController {
     super.onClose();
   }
 
-  // getMurderMysteryDetail() async {
-  //   var response = await HttpsUtil.get("/api/v1/murderMysteries/${Get.arguments}");
-  //   if(response != null) {
-  //     murderMysteryDetail = MurderMysteryDetail.fromJson(response['data']).obs;
-  //   }
-  // }
+  getMurderMysteryDetail() async {
+    var response = await HttpsUtil.get("/api/v1/murderMysteries/${Get.arguments}");
+    if(response != null) {
+      murderMysteryDetail.value = MurderMysteryDetail.fromJson(response.data['data']);
+    }
+  }
 }

@@ -4,10 +4,10 @@ class MurderMysteryDetail {
 
   int? id;
   String? title;
-  DateTime? beginExpected;
-  DateTime? finishExpected;
+  String? beginExpected;
+  String? finishExpected;
   String? description;
-  int? status;
+  String? status;
   int? boyNum;
   List<MurderMysteryUser>? boyParticipants;
   int? girlNum;
@@ -17,9 +17,10 @@ class MurderMysteryDetail {
   String? shopName;
   List<String>? tags;
   Map<String, dynamic>? config;
+  String? createUsername;
 
-  MurderMysteryDetail({this.id, this.title, this.beginExpected, this.finishExpected, this.description,this.status, this.boyNum, this.boyParticipants,
-  this.girlNum, this.girlParticipants, this.area, this.address, this.shopName, this.tags, this.config});
+  MurderMysteryDetail({this.id, this.title, this.beginExpected, this.finishExpected, this.description,this.status, this.boyNum, this.boyParticipants = const [],
+  this.girlNum, this.girlParticipants = const [], this.area, this.address, this.shopName, this.tags, this.config});
 
   MurderMysteryDetail.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -29,14 +30,15 @@ class MurderMysteryDetail {
     description = json['description'];
     status = json['status'];
     boyNum = json['boyNum'];
-    boyParticipants = json['boyParticipants'];
+    boyParticipants = json['boyParticipants'].map<MurderMysteryUser>((user) => MurderMysteryUser.fromJson(user)).toList();
     girlNum = json['girlNum'];
-    girlParticipants = json['girlParticipants'];
-    area = json['area'];
+    girlParticipants = json['girlParticipants'].map<MurderMysteryUser>((user) => MurderMysteryUser.fromJson(user)).toList();
+    area = json['area'].map<String>((area) => area.toString()).toList();
     address = json['address'];
     shopName = json['shopName'];
-    tags = json['tags'];
+    tags = json['tags'].map<String>((tag) => tag.toString()).toList();
     config = json['config'];
+    createUsername = json['createUsername'];
   }
 
   Map<String, dynamic> toJson() {
@@ -56,6 +58,7 @@ class MurderMysteryDetail {
     data['shopName'] = shopName;
     data['tags'] = tags;
     data['config'] = config;
+    data['createUsername'] = createUsername;
     return data;
   }
 }
