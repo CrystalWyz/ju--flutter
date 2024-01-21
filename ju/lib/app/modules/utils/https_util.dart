@@ -47,6 +47,20 @@ class HttpsUtil {
     }
   }
 
+  static Future patch(String apiUrl,{Map? data, Options? options}) async {
+    try {
+      var response = await getInstance().patch(apiUrl,data:data, options: options);
+      return response;
+    } on DioException catch (e) {
+      if (e.response != null) {
+        showCenterShortToast(e.response?.data['message']);
+      } else{
+        showCenterShortToast("出现错误啦～");
+      }
+      return null;
+    }
+  }
+
   static void showCenterShortToast(msg) {
     Fluttertoast.showToast(
         msg: msg,

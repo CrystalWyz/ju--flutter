@@ -136,7 +136,9 @@ class HomeView extends GetView<HomeController> {
                                   Padding(padding: const EdgeInsets.fromLTRB(
                                       10, 0, 10, 0),
                                       child: Text(controller.pageInfo[index].description!,
-                                        style: TextStyle(fontSize: 50.sp),)),
+                                        style: TextStyle(fontSize: 50.sp),
+                                        maxLines: 3,
+                                        overflow: TextOverflow.ellipsis)),
                                   Padding(padding: EdgeInsets.fromLTRB(
                                       10, 0, 10, 0), child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,

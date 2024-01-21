@@ -20,7 +20,7 @@ class MurderMysteryDetail {
   String? createUsername;
 
   MurderMysteryDetail({this.id, this.title, this.beginExpected, this.finishExpected, this.description,this.status, this.boyNum, this.boyParticipants = const [],
-  this.girlNum, this.girlParticipants = const [], this.area, this.address, this.shopName, this.tags, this.config});
+  this.girlNum, this.girlParticipants = const [], this.area, this.address, this.shopName, this.tags = const [], this.config});
 
   MurderMysteryDetail.fromJson(Map<String, dynamic> json) {
     id = json['id'];
