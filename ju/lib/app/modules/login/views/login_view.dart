@@ -75,7 +75,7 @@ class LoginView extends GetView<LoginController> {
                     if (response != null) {
                       User user = User.fromJson(response.data['data']);
                       await StorageUtil.set("userInfo", user);
-                      Get.toNamed("/home");
+                      Get.offNamed("/home");
                     }
                   },
                   child: const Text('登录'),

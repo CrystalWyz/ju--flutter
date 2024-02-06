@@ -14,6 +14,7 @@ class HomeView extends GetView<HomeController> {
           children: [
             Obx(() =>
                 CustomScrollView(
+                  controller: controller.scrollController,
                   slivers: [
                     SliverAppBar(
                       stretch: true,
@@ -26,8 +27,8 @@ class HomeView extends GetView<HomeController> {
                       //   ],
                       // ),
                       floating: true,
-                      leading: Hero(tag: "loginHero",
-                          child: const IconButton(
+                      leading: const Hero(tag: "loginHero",
+                          child: IconButton(
                             icon: Icon(Icons.ac_unit),
                             onPressed: null,
                           )),
@@ -96,13 +97,13 @@ class HomeView extends GetView<HomeController> {
                                       Row(
                                         children: [
                                           Padding(
-                                            padding: EdgeInsets.fromLTRB(
+                                            padding: const EdgeInsets.fromLTRB(
                                                 10, 0, 0, 0),
                                             child: Text(controller.pageInfo[index].title!,
                                                 style: TextStyle(
                                                     fontSize: 60.sp)),
                                           ),
-                                          Padding(padding: EdgeInsets.fromLTRB(
+                                          Padding(padding: const EdgeInsets.fromLTRB(
                                               10, 0, 0, 0), child: Wrap(
                                               spacing: 20.w,
                                               children: controller.pageInfo[index].tags!.map((tag) =>
@@ -115,7 +116,7 @@ class HomeView extends GetView<HomeController> {
                                                             .circular(10)
                                                     ),
                                                     child: Text(tag,
-                                                        style: TextStyle(
+                                                        style: const TextStyle(
                                                             color: Colors
                                                                 .black54)),
                                                   )).toList()
@@ -128,7 +129,7 @@ class HomeView extends GetView<HomeController> {
                                                 "/murder-mystery-detail",
                                                 arguments: controller.pageInfo[index].id);
                                           },
-                                          icon: Icon(
+                                          icon: const Icon(
                                               Icons.arrow_forward_outlined))
                                     ],
                                   ),
@@ -139,16 +140,16 @@ class HomeView extends GetView<HomeController> {
                                         style: TextStyle(fontSize: 50.sp),
                                         maxLines: 3,
                                         overflow: TextOverflow.ellipsis)),
-                                  Padding(padding: EdgeInsets.fromLTRB(
+                                  Padding(padding: const EdgeInsets.fromLTRB(
                                       10, 0, 10, 0), child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
-                                      Icon(Icons.girl_outlined,
+                                      const Icon(Icons.girl_outlined,
                                           color: Color.fromRGBO(
                                               255, 184, 198, 1)),
                                       Text("${controller.pageInfo[index].girlNum!}/${controller.pageInfo[index]
                                           .girlParticipantNum!}"),
-                                      Icon(Icons.boy_outlined,
+                                      const Icon(Icons.boy_outlined,
                                           color: Color.fromRGBO(
                                               135, 206, 250, 1)),
                                       Text("${controller.pageInfo[index].boyNum}/${controller.pageInfo[index]

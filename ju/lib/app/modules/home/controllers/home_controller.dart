@@ -8,6 +8,8 @@ import '../views/home_view.dart';
 class HomeController extends GetxController with GetSingleTickerProviderStateMixin {
   late TabController tabController;
   late RxInt bottomNaviSelected;
+  late ScrollController scrollController;
+  bool inflight = false;
   RxList<MurderMysteryPageInfo> pageInfo = <MurderMysteryPageInfo>[].obs;
   
   static int size = 10;
@@ -21,6 +23,7 @@ class HomeController extends GetxController with GetSingleTickerProviderStateMix
   void onInit() {
     tabController = TabController(length: 4, vsync: this);
     bottomNaviSelected = 0.obs;
+    scrollController = ScrollController();
 
     getMurderMysteryPageData();
     
@@ -33,11 +36,19 @@ class HomeController extends GetxController with GetSingleTickerProviderStateMix
     if(userInfo == null) {
       Get.offNamed("/login");
     }
+    
+    scrollController.addListener(() {
+      if (scrollController.position.pixels >= scrollController.position.maxScrollExtent - 20) {
+        getMurderMysteryPageData();
+      }
+    });
     super.onReady();
   }
 
   @override
   void onClose() {
+    tabController.dispose();
+    scrollController.dispose();
     super.onClose();
   }
 
@@ -46,11 +57,17 @@ class HomeController extends GetxController with GetSingleTickerProviderStateMix
   }
 
   getMurderMysteryPageData() async {
+    if (inflight) {
+      return;
+    }
+    inflight = true;
     var response = await HttpsUtil.get("/api/v1/murderMysteries/page?page=${page}&size=${size}");
     if(response != null) {
-      pageInfo.addAll(response.data['data'].map<MurderMysteryPageInfo>((info) => MurderMysteryPageInfo.fromJson(info)).toList());
-      print(pageInfo);
-      page++;
+      if (response.data['data'] != null) {
+        pageInfo.addAll(response.data['data'].map<MurderMysteryPageInfo>((info) => MurderMysteryPageInfo.fromJson(info)).toList());
+        page++;
+      }
     }
+    inflight = false;
   }
 }
