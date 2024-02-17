@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/murder_mystery_controller.dart';
+import '../controllers/ju_user_controller.dart';
 
-class MurderMysteryView extends GetView<MurderMysteryController> {
-  const MurderMysteryView({Key? key}) : super(key: key);
+class JuUserView extends GetView<JuUserController> {
+  const JuUserView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('MurderMysteryView'),
+        title: const Text('JuUserView'),
         centerTitle: true,
       ),
       body: const Center(
         child: Text(
-          'MurderMysteryView is working',
+          'JuUserView is working',
           style: TextStyle(fontSize: 20),
         ),
       ),

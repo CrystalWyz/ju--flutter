@@ -8,10 +8,10 @@ import '../modules/escape_room/bindings/escape_room_binding.dart';
 import '../modules/escape_room/views/escape_room_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/ju_user/bindings/ju_user_binding.dart';
+import '../modules/ju_user/views/ju_user_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
-import '../modules/murder_mystery/bindings/murder_mystery_binding.dart';
-import '../modules/murder_mystery/views/murder_mystery_view.dart';
 import '../modules/murder_mystery_detail/bindings/murder_mystery_detail_binding.dart';
 import '../modules/murder_mystery_detail/views/murder_mystery_detail_view.dart';
 import '../modules/park_hide/bindings/park_hide_binding.dart';
@@ -33,11 +33,6 @@ class AppPages {
       name: _Paths.HOME,
       page: () => const HomeView(),
       binding: HomeBinding(),
-    ),
-    GetPage(
-      name: _Paths.MURDER_MYSTERY,
-      page: () => const MurderMysteryView(),
-      binding: MurderMysteryBinding(),
     ),
     GetPage(
       name: _Paths.DRINK,
@@ -77,6 +72,11 @@ class AppPages {
       name: _Paths.MURDER_MYSTERY_DETAIL,
       page: () => const MurderMysteryDetailView(),
       binding: MurderMysteryDetailBinding(),
+    ),
+    GetPage(
+      name: _Paths.JU_USER,
+      page: () => const JuUserView(),
+      binding: JuUserBinding(),
     ),
   ];
 }

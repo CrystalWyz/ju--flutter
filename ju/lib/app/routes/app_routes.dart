@@ -12,6 +12,7 @@ abstract class Routes {
   static const LOGIN = _Paths.LOGIN;
   static const SEARCH = _Paths.SEARCH;
   static const MURDER_MYSTERY_DETAIL = _Paths.MURDER_MYSTERY_DETAIL;
+  static const JU_USER = _Paths.JU_USER;
 }
 
 abstract class _Paths {
@@ -25,4 +26,5 @@ abstract class _Paths {
   static const LOGIN = '/login';
   static const SEARCH = '/search';
   static const MURDER_MYSTERY_DETAIL = '/murder-mystery-detail';
+  static const JU_USER = '/ju-user';
 }

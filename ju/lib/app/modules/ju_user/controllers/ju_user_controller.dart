@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-class MurderMysteryController extends GetxController {
-  //TODO: Implement MurderMysteryController
+class JuUserController extends GetxController {
+  //TODO: Implement JuUserController
 
   final count = 0.obs;
   @override
