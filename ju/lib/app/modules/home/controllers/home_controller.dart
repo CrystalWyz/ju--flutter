@@ -8,7 +8,7 @@ import '../../utils/storage_util.dart';
 class HomeController extends GetxController with GetSingleTickerProviderStateMixin {
   late TabController tabController;
   late ScrollController scrollController;
-  Widget tabBody = const MurderMysteryView();
+  Rx<Widget> tabBody = SizedBox().obs;
   bool inflight = false;
 
   RxList<MurderMysteryPageInfo> pageInfo = <MurderMysteryPageInfo>[].obs;
