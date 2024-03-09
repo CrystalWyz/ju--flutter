@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ju/app/modules/home/views/home_view.dart';
 import 'package:ju/app/modules/home/views/murder_mystery_view.dart';
+import 'package:ju/app/modules/hotel_bookin/hotel_home_screen.dart';
+import 'package:ju/app/modules/my_diary/my_diary_screen.dart';
 import 'bottom_bar_view.dart';
 import '../model/tabIcon_data.dart';
 import 'fitness_app_theme.dart';
@@ -29,7 +30,7 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
 
     animationController = AnimationController(
         duration: const Duration(milliseconds: 600), vsync: this);
-    tabBody = MurderMysteryView(animationController: animationController);
+    tabBody = HotelHomeScreen();
     super.initState();
   }
 
@@ -85,7 +86,7 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
                   return;
                 }
                 setState(() {
-                  tabBody = MurderMysteryView(animationController: animationController);
+                  tabBody = HotelHomeScreen();
                 });
               });
             } else if (index == 1 || index == 3) {
@@ -94,7 +95,7 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
                   return;
                 }
                 setState(() {
-                  tabBody = MurderMysteryView(animationController: animationController);
+                  tabBody = MyDiaryScreen(animationController: animationController);
                 });
               });
             }
