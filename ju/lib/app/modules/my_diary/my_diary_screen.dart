@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ju/app/modules/my_diary/meals_list_view.dart';
 import 'package:ju/app/modules/my_diary/water_view.dart';
+import 'package:ju/app/modules/ui/circle_shine_image.dart';
 import 'package:ju/app/modules/ui/body_measurement.dart';
 import 'package:ju/app/modules/ui/fitness_app_theme.dart';
 import 'package:ju/app/modules/ui/glass_view.dart';
@@ -244,23 +245,35 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
                             top: 16 - 8.0 * topBarOpacity,
                             bottom: 12 - 8.0 * topBarOpacity),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  'My Diary',
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                    fontFamily: FitnessAppTheme.fontName,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 22 + 6 - 6 * topBarOpacity,
-                                    letterSpacing: 1.2,
-                                    color: FitnessAppTheme.darkerText,
+                            Flexible(
+                              flex: 2,
+                              child: Row(
+                                children: [
+                                  CircleShineImage(
+                                    image: AssetImage('assets/hotel_4.png'),
+                                    radius: 20,
+                                    maxBlurRadius: 7,
+                                    color: FitnessAppTheme.nearlyDarkBlue,
+                                    duration: const Duration(milliseconds: 2000),
                                   ),
-                                ),
-                              ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 4),
+                                    child: Text(
+                                      'Wyz',
+                                      textAlign: TextAlign.left,
+                                      style: TextStyle(
+                                        fontFamily: FitnessAppTheme.fontName,
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 22 - 6 * topBarOpacity,
+                                        letterSpacing: 1.2,
+                                        color: FitnessAppTheme.darkerText,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              )
                             ),
                             SizedBox(
                               height: 38,
