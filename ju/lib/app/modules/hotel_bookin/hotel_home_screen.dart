@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:intl/intl.dart';
 import 'package:ju/app/modules/hotel_bookin/calendar_popup_view.dart';
 import 'package:ju/app/modules/hotel_bookin/hotel_list_view.dart';
-import 'package:ju/app/modules/hotel_bookin/model/hotel_list_data.dart';
+import 'package:ju/app/modules/model/MurderMysteryPageInfo.dart';
+import 'package:ju/app/modules/utils/https_util.dart';
 import 'filters_screen.dart';
 import 'hotel_app_theme.dart';
 
@@ -15,17 +15,52 @@ class HotelHomeScreen extends StatefulWidget {
 class _HotelHomeScreenState extends State<HotelHomeScreen>
     with TickerProviderStateMixin {
   AnimationController? animationController;
-  List<HotelListData> hotelList = HotelListData.hotelList;
+  List<MurderMysteryPageInfo> pageInfo = [];
   final ScrollController _scrollController = ScrollController();
 
   DateTime startDate = DateTime.now();
   DateTime endDate = DateTime.now().add(const Duration(days: 5));
 
+  static int size = 10;
+  static int page = 1;
+  bool inflight = false;
+
+
   @override
   void initState() {
+    super.initState();
+
+    page = 1;
+
     animationController = AnimationController(
         duration: const Duration(milliseconds: 1000), vsync: this);
-    super.initState();
+
+    // 剧本杀列表初始化
+    getMurderMysteryPageData();
+
+    // 监听滚动
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels >= _scrollController.position.maxScrollExtent - 5) {
+        if (inflight) {
+          return;
+        }
+        inflight = true;
+        getMurderMysteryPageData();
+        inflight = false;
+      }
+    });
+  }
+
+  getMurderMysteryPageData() async {
+    var response = await HttpsUtil.get("/api/v1/murderMysteries/page?page=$page&size=$size");
+    if(response != null) {
+      if (response.data['data'] != null) {
+        setState(() {
+          pageInfo.addAll(response.data['data'].map<MurderMysteryPageInfo>((info) => MurderMysteryPageInfo.fromJson(info)).toList());
+        });
+        page++;
+      }
+    }
   }
 
   Future<bool> getData() async {
@@ -88,12 +123,12 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                         color:
                             HotelAppTheme.buildLightTheme().colorScheme.background,
                         child: ListView.builder(
-                          itemCount: hotelList.length,
+                          itemCount: pageInfo.length,
                           padding: const EdgeInsets.only(top: 8),
                           scrollDirection: Axis.vertical,
                           itemBuilder: (BuildContext context, int index) {
                             final int count =
-                                hotelList.length > 10 ? 10 : hotelList.length;
+                            pageInfo.length > 10 ? 10 : pageInfo.length;
                             final Animation<double> animation =
                                 Tween<double>(begin: 0.0, end: 1.0).animate(
                                     CurvedAnimation(
@@ -104,7 +139,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                             animationController?.forward();
                             return HotelListView(
                               callback: () {},
-                              hotelData: hotelList[index],
+                              murderMysteryPageInfo: pageInfo[index],
                               animation: animation,
                               animationController: animationController!,
                             );
@@ -144,11 +179,11 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                   return const SizedBox();
                 } else {
                   return ListView.builder(
-                    itemCount: hotelList.length,
+                    itemCount: pageInfo.length,
                     scrollDirection: Axis.vertical,
                     itemBuilder: (BuildContext context, int index) {
                       final int count =
-                          hotelList.length > 10 ? 10 : hotelList.length;
+                      pageInfo.length > 10 ? 10 : pageInfo.length;
                       final Animation<double> animation =
                           Tween<double>(begin: 0.0, end: 1.0).animate(
                               CurvedAnimation(
@@ -159,7 +194,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
 
                       return HotelListView(
                         callback: () {},
-                        hotelData: hotelList[index],
+                        murderMysteryPageInfo: pageInfo[index],
                         animation: animation,
                         animationController: animationController!,
                       );
@@ -176,8 +211,8 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
 
   Widget getHotelViewList() {
     final List<Widget> hotelListViews = <Widget>[];
-    for (int i = 0; i < hotelList.length; i++) {
-      final int count = hotelList.length;
+    for (int i = 0; i < pageInfo.length; i++) {
+      final int count = pageInfo.length;
       final Animation<double> animation =
           Tween<double>(begin: 0.0, end: 1.0).animate(
         CurvedAnimation(
@@ -188,7 +223,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
       hotelListViews.add(
         HotelListView(
           callback: () {},
-          hotelData: hotelList[i],
+          murderMysteryPageInfo: pageInfo[i],
           animation: animation,
           animationController: animationController!,
         ),

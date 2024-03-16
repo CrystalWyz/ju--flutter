@@ -2,20 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ju/app/modules/hotel_bookin/hotel_app_theme.dart';
-
-import 'model/hotel_list_data.dart';
+import 'package:ju/app/modules/model/MurderMysteryPageInfo.dart';
 
 class HotelListView extends StatelessWidget {
   const HotelListView(
       {Key? key,
-      this.hotelData,
+      this.murderMysteryPageInfo,
       this.animationController,
       this.animation,
       this.callback})
       : super(key: key);
 
   final VoidCallback? callback;
-  final HotelListData? hotelData;
+  final MurderMysteryPageInfo? murderMysteryPageInfo;
   final AnimationController? animationController;
   final Animation<double>? animation;
 
@@ -55,7 +54,7 @@ class HotelListView extends StatelessWidget {
                             AspectRatio(
                               aspectRatio: 2,
                               child: Image.asset(
-                                hotelData!.imagePath,
+                                murderMysteryPageInfo!.imagePath,
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -77,7 +76,7 @@ class HotelListView extends StatelessWidget {
                                             CrossAxisAlignment.start,
                                         children: <Widget>[
                                           Text(
-                                            hotelData!.titleTxt,
+                                            murderMysteryPageInfo!.title,
                                             textAlign: TextAlign.left,
                                             style: const TextStyle(
                                               fontWeight: FontWeight.w600,
@@ -91,7 +90,7 @@ class HotelListView extends StatelessWidget {
                                                 MainAxisAlignment.start,
                                             children: <Widget>[
                                               Text(
-                                                hotelData!.subTxt,
+                                                murderMysteryPageInfo!.subTitle,
                                                 style: TextStyle(
                                                     fontSize: 14,
                                                     color: Colors.grey
@@ -109,7 +108,7 @@ class HotelListView extends StatelessWidget {
                                               ),
                                               Expanded(
                                                 child: Text(
-                                                  '${hotelData!.dist.toStringAsFixed(1)} km to city',
+                                                  '${murderMysteryPageInfo!.dist.toStringAsFixed(1)} km to city',
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                   style: TextStyle(
@@ -125,42 +124,8 @@ class HotelListView extends StatelessWidget {
                                                 const EdgeInsets.only(top: 4),
                                             child: Row(
                                               children: <Widget>[
-                                                RatingBar(
-                                                  initialRating:
-                                                      hotelData!.rating,
-                                                  direction: Axis.horizontal,
-                                                  allowHalfRating: true,
-                                                  itemCount: 5,
-                                                  itemSize: 24,
-                                                  ratingWidget: RatingWidget(
-                                                    full: Icon(
-                                                      Icons.star_rate_rounded,
-                                                      color: HotelAppTheme
-                                                              .buildLightTheme()
-                                                          .primaryColor,
-                                                    ),
-                                                    half: Icon(
-                                                      Icons.star_half_rounded,
-                                                      color: HotelAppTheme
-                                                              .buildLightTheme()
-                                                          .primaryColor,
-                                                    ),
-                                                    empty: Icon(
-                                                      Icons
-                                                          .star_border_rounded,
-                                                      color: HotelAppTheme
-                                                              .buildLightTheme()
-                                                          .primaryColor,
-                                                    ),
-                                                  ),
-                                                  itemPadding:
-                                                      EdgeInsets.zero,
-                                                  onRatingUpdate: (rating) {
-                                                    print(rating);
-                                                  },
-                                                ),
                                                 Text(
-                                                  ' ${hotelData!.reviews} Reviews',
+                                                  ' ${murderMysteryPageInfo!.reviews} Reviews',
                                                   style: TextStyle(
                                                       fontSize: 14,
                                                       color: Colors.grey
@@ -183,7 +148,7 @@ class HotelListView extends StatelessWidget {
                                           CrossAxisAlignment.end,
                                       children: <Widget>[
                                         Text(
-                                          '\$${hotelData!.perNight}',
+                                          '待定',
                                           textAlign: TextAlign.left,
                                           style: const TextStyle(
                                             fontWeight: FontWeight.w600,
