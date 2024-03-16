@@ -204,115 +204,119 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
     return Padding(
       padding: const EdgeInsets.only(left: 18, bottom: 16),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          Expanded(
-            child: Row(
-              children: <Widget>[
-                Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    focusColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    splashColor: Colors.grey.withOpacity(0.2),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(4.0),
-                    ),
-                    onTap: () {
-                      FocusScope.of(context).requestFocus(FocusNode());
-                      // setState(() {
-                      //   isDatePopupOpen = true;
-                      // });
-                      showDemoDialog(context: context);
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: 8, right: 8, top: 4, bottom: 4),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            '游戏日期',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w100,
-                                fontSize: 16,
-                                color: Colors.grey.withOpacity(0.8)),
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            '${DateFormat("dd, MMM").format(startDate)} - ${DateFormat("dd, MMM").format(endDate)}',
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w100,
-                              fontSize: 16,
-                            ),
-                          ),
-                        ],
-                      ),
+          // Expanded(
+          //   child: Material(
+          //   color: Colors.transparent,
+          //   child: InkWell(
+          //     focusColor: Colors.transparent,
+          //     highlightColor: Colors.transparent,
+          //     hoverColor: Colors.transparent,
+          //     splashColor: Colors.grey.withOpacity(0.2),
+          //     borderRadius: const BorderRadius.all(
+          //       Radius.circular(4.0),
+          //     ),
+          //     onTap: () {
+          //       FocusScope.of(context).requestFocus(FocusNode());
+          //     },
+          //     child: Padding(
+          //       padding: const EdgeInsets.only(
+          //           left: 8, right: 8, top: 4, bottom: 4),
+          //       child: Column(
+          //         mainAxisAlignment: MainAxisAlignment.center,
+          //         crossAxisAlignment: CrossAxisAlignment.start,
+          //         children: <Widget>[
+          //           Text(
+          //             '人数',
+          //             style: TextStyle(
+          //                 fontWeight: FontWeight.w100,
+          //                 fontSize: 16,
+          //                 color: Colors.grey.withOpacity(0.8)),
+          //           ),
+          //           const SizedBox(
+          //             height: 8,
+          //           ),
+          //           const Text(
+          //             '6',
+          //             style: TextStyle(
+          //               fontWeight: FontWeight.w100,
+          //               fontSize: 16,
+          //             ),
+          //           ),
+          //         ],
+          //       ),
+          //     ),
+          //   ),
+          // )
+          // ),
+          // Padding(
+          //   padding: const EdgeInsets.only(right: 8),
+          //   child: Container(
+          //     width: 1,
+          //     height: 42,
+          //     color: Colors.grey.withOpacity(0.8),
+          //   ),
+          // ),
+          Expanded(child: InkWell(
+            focusColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            hoverColor: Colors.transparent,
+            splashColor: Colors.grey.withOpacity(0.2),
+            borderRadius: const BorderRadius.all(
+              Radius.circular(4.0),
+            ),
+            onTap: () {
+              FocusScope.of(context).requestFocus(FocusNode());
+              // setState(() {
+              //   isDatePopupOpen = true;
+              // });
+              // showDemoDialog(context: context);
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(
+                  left: 8, right: 8, top: 4, bottom: 4),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    '下一场',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w100,
+                        fontSize: 16,
                     ),
                   ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 8),
-            child: Container(
-              width: 1,
-              height: 42,
-              color: Colors.grey.withOpacity(0.8),
-            ),
-          ),
-          Expanded(
-            child: Row(
-              children: <Widget>[
-                Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    focusColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    splashColor: Colors.grey.withOpacity(0.2),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(4.0),
-                    ),
-                    onTap: () {
-                      FocusScope.of(context).requestFocus(FocusNode());
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: 8, right: 8, top: 4, bottom: 4),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            '人数',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w100,
-                                fontSize: 16,
-                                color: Colors.grey.withOpacity(0.8)),
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          const Text(
-                            '6',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w100,
-                              fontSize: 16,
-                            ),
-                          ),
-                        ],
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        '窗边的猴子',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w100,
+                            fontSize: 16,
+                        ),
                       ),
-                    ),
-                  ),
-                ),
-              ],
+                      Text(
+                        '6人',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w100,
+                            fontSize: 16,
+                        ),
+                      ),
+                      Text(
+                        '开始时间: 2023-03-16 14:00',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w100,
+                            fontSize: 16,
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
             ),
-          ),
+          ))
         ],
       ),
     );
@@ -320,12 +324,12 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
 
   Widget getSearchBarUI() {
     return Padding(
-      padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
+      padding: const EdgeInsets.only(left: 12, right: 12, top: 4, bottom: 4),
       child: Row(
         children: <Widget>[
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.only(right: 16, top: 8, bottom: 8),
+              padding: const EdgeInsets.only(right: 12, top: 8, bottom: 8),
               child: Container(
                 decoration: BoxDecoration(
                   color: HotelAppTheme.buildLightTheme().colorScheme.background,
@@ -345,7 +349,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                   child: TextField(
                     onChanged: (String txt) {},
                     style: const TextStyle(
-                      fontSize: 18,
+                      fontSize: 15,
                     ),
                     cursorColor: HotelAppTheme.buildLightTheme().primaryColor,
                     decoration: const InputDecoration(
@@ -424,7 +428,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                   child: Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(
-                      'Xxx',
+                      '排序条件',
                       style: TextStyle(
                         fontWeight: FontWeight.w100,
                         fontSize: 16,
@@ -536,11 +540,10 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                     Radius.circular(32.0),
                   ),
                   onTap: () {
-                    Navigator.pop(context);
                   },
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),
-                    child: Icon(Icons.arrow_back),
+                    child: Icon(Icons.ac_unit_outlined),
                   ),
                 ),
               ),

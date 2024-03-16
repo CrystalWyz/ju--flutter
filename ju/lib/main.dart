@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:ju/app/modules/ui/fitness_app_theme.dart';
 
+import 'app/modules/hotel_bookin/hotel_app_theme.dart';
 import 'app/routes/app_pages.dart';
 
 void main() {
@@ -24,7 +25,7 @@ void main() {
           theme: ThemeData(
               primarySwatch: Colors.blue,
               colorScheme: ColorScheme.fromSeed(
-                  seedColor: FitnessAppTheme.nearlyDarkBlue,
+                  seedColor: HotelAppTheme.buildLightTheme().primaryColor,
                   brightness: Brightness.light,
                   surfaceTint: Colors.transparent)
           ),
