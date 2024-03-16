@@ -48,8 +48,11 @@ class _CircleShineImageState extends State<CircleShineImage> with SingleTickerPr
       vsync: this,
       duration: widget.duration,
     )..addListener(() {
-      setState(() {});
+      setState(() {
+
+      });
     });
+
     animation = Tween<double>(begin: 0, end: widget.maxBlurRadius).animate(
       CurvedAnimation(
         parent: animationController,
@@ -61,9 +64,9 @@ class _CircleShineImageState extends State<CircleShineImage> with SingleTickerPr
 
   @override
   void dispose() {
-    super.dispose();
-
+    // 注: 先销毁自己的animationController 否则报错
     animationController.dispose();
+    super.dispose();
   }
 
   @override
