@@ -1,15 +1,12 @@
-
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_baidu_mapapi_base/flutter_baidu_mapapi_base.dart';
 import 'package:flutter_baidu_mapapi_map/flutter_baidu_mapapi_map.dart';
-import 'hotel_app_theme.dart';
-import 'map_base_page_state.dart';
+import 'package:ju/app/modules/hotel_bookin/hotel_app_theme.dart';
+import 'package:ju/app/modules/hotel_bookin/map_base_page_state.dart';
 
 /// 地图类型示例
 class ShowMapTypePage extends StatefulWidget {
-  const ShowMapTypePage({
+  ShowMapTypePage({
     Key? key,
   }) : super(key: key);
 
@@ -83,7 +80,7 @@ class _ShowMapTypePageState extends BMFBaseMapState<ShowMapTypePage> {
     super.build(context);
     return MaterialApp(
       home: Scaffold(
-        body: Stack(children: <Widget>[generateMap(),generateControlBar()]),
+        body: generateMap(),
       ),
     );
   }

@@ -7,6 +7,7 @@ import 'package:ju/app/modules/ui/fitness_app_theme.dart';
 import 'package:ju/app/modules/ui/glass_view.dart';
 import 'package:ju/app/modules/ui/mediterranean_diet_view.dart';
 import 'package:ju/app/modules/ui/title_view.dart';
+import 'package:ju/app/modules/utils/storage_util.dart';
 
 class MyDiaryScreen extends StatefulWidget {
   const MyDiaryScreen({Key? key}) : super(key: key);
@@ -27,7 +28,7 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
   double topBarOpacity = 0.0;
 
   @override
-  void initState() {
+  Future<void> initState() async {
 
     super.initState();
 
@@ -61,6 +62,10 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
         }
       }
     });
+
+    // 获取用户信息
+    var userInfo = await StorageUtil.get("userInfo");
+    print(userInfo);
   }
 
   @override

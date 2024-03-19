@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_baidu_mapapi_base/flutter_baidu_mapapi_base.dart';
 import 'package:flutter_baidu_mapapi_map/flutter_baidu_mapapi_map.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ju/app/modules/hotel_bookin/calendar_popup_view.dart';
@@ -160,7 +159,12 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
     //     ),
     //   ),
     // );
-    return const ShowMapTypePage();
+    try {
+      return ShowMapTypePage();
+    } catch (e) {
+        print(e);
+        return Container();
+    }
   }
 
   Widget getListUI() {
