@@ -1,7 +1,11 @@
+
 import 'package:flutter/material.dart';
+import 'package:flutter_baidu_mapapi_base/flutter_baidu_mapapi_base.dart';
+import 'package:flutter_baidu_mapapi_map/flutter_baidu_mapapi_map.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ju/app/modules/hotel_bookin/calendar_popup_view.dart';
 import 'package:ju/app/modules/hotel_bookin/hotel_list_view.dart';
+import 'package:ju/app/modules/hotel_bookin/show_map_type_page.dart';
 import 'package:ju/app/modules/model/MurderMysteryPageInfo.dart';
 import 'package:ju/app/modules/utils/https_util.dart';
 import 'filters_screen.dart';
@@ -14,6 +18,7 @@ class HotelHomeScreen extends StatefulWidget {
 
 class _HotelHomeScreenState extends State<HotelHomeScreen>
     with TickerProviderStateMixin {
+  late BMFMapController myMapController;
   AnimationController? animationController;
   List<MurderMysteryPageInfo> pageInfo = [];
   final ScrollController _scrollController = ScrollController();
@@ -77,84 +82,85 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: HotelAppTheme.buildLightTheme(),
-      child: Scaffold(
-        body: Stack(
-          children: <Widget>[
-            InkWell(
-              splashColor: Colors.transparent,
-              focusColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              hoverColor: Colors.transparent,
-              onTap: () {
-                FocusScope.of(context).requestFocus(FocusNode());
-              },
-              child: Column(
-                children: <Widget>[
-                  getAppBarUI(),
-                  Expanded(
-                    child: NestedScrollView(
-                      controller: _scrollController,
-                      headerSliverBuilder:
-                          (BuildContext context, bool innerBoxIsScrolled) {
-                        return <Widget>[
-                          SliverList(
-                            delegate: SliverChildBuilderDelegate(
-                                (BuildContext context, int index) {
-                              return Column(
-                                children: <Widget>[
-                                  getSearchBarUI(),
-                                  getTimeDateUI(),
-                                ],
-                              );
-                            }, childCount: 1),
-                          ),
-                          SliverPersistentHeader(
-                            pinned: true,
-                            floating: true,
-                            delegate: ContestTabHeader(
-                              getFilterBarUI(),
-                            ),
-                          ),
-                        ];
-                      },
-                      body: Container(
-                        color:
-                            HotelAppTheme.buildLightTheme().colorScheme.background,
-                        child: ListView.builder(
-                          itemCount: pageInfo.length,
-                          padding: const EdgeInsets.only(top: 8),
-                          scrollDirection: Axis.vertical,
-                          itemBuilder: (BuildContext context, int index) {
-                            final int count =
-                            pageInfo.length > 10 ? 10 : pageInfo.length;
-                            final Animation<double> animation =
-                                Tween<double>(begin: 0.0, end: 1.0).animate(
-                                    CurvedAnimation(
-                                        parent: animationController!,
-                                        curve: Interval(
-                                            (1 / count) * index, 1.0,
-                                            curve: Curves.fastOutSlowIn)));
-                            animationController?.forward();
-                            return HotelListView(
-                              callback: () {},
-                              murderMysteryPageInfo: pageInfo[index],
-                              animation: animation,
-                              animationController: animationController!,
-                            );
-                          },
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+    // return Theme(
+    //   data: HotelAppTheme.buildLightTheme(),
+    //   child: Scaffold(
+    //     body: Stack(
+    //       children: <Widget>[
+    //         InkWell(
+    //           splashColor: Colors.transparent,
+    //           focusColor: Colors.transparent,
+    //           highlightColor: Colors.transparent,
+    //           hoverColor: Colors.transparent,
+    //           onTap: () {
+    //             FocusScope.of(context).requestFocus(FocusNode());
+    //           },
+    //           child: Column(
+    //             children: <Widget>[
+    //               getAppBarUI(),
+    //               Expanded(
+    //                 child: NestedScrollView(
+    //                   controller: _scrollController,
+    //                   headerSliverBuilder:
+    //                       (BuildContext context, bool innerBoxIsScrolled) {
+    //                     return <Widget>[
+    //                       SliverList(
+    //                         delegate: SliverChildBuilderDelegate(
+    //                             (BuildContext context, int index) {
+    //                           return Column(
+    //                             children: <Widget>[
+    //                               getSearchBarUI(),
+    //                               getTimeDateUI(),
+    //                             ],
+    //                           );
+    //                         }, childCount: 1),
+    //                       ),
+    //                       SliverPersistentHeader(
+    //                         pinned: true,
+    //                         floating: true,
+    //                         delegate: ContestTabHeader(
+    //                           getFilterBarUI(),
+    //                         ),
+    //                       ),
+    //                     ];
+    //                   },
+    //                   body: Container(
+    //                     color:
+    //                         HotelAppTheme.buildLightTheme().colorScheme.background,
+    //                     child: ListView.builder(
+    //                       itemCount: pageInfo.length,
+    //                       padding: const EdgeInsets.only(top: 8),
+    //                       scrollDirection: Axis.vertical,
+    //                       itemBuilder: (BuildContext context, int index) {
+    //                         final int count =
+    //                         pageInfo.length > 10 ? 10 : pageInfo.length;
+    //                         final Animation<double> animation =
+    //                             Tween<double>(begin: 0.0, end: 1.0).animate(
+    //                                 CurvedAnimation(
+    //                                     parent: animationController!,
+    //                                     curve: Interval(
+    //                                         (1 / count) * index, 1.0,
+    //                                         curve: Curves.fastOutSlowIn)));
+    //                         animationController?.forward();
+    //                         return HotelListView(
+    //                           callback: () {},
+    //                           murderMysteryPageInfo: pageInfo[index],
+    //                           animation: animation,
+    //                           animationController: animationController!,
+    //                         );
+    //                       },
+    //                     ),
+    //                   ),
+    //                 ),
+    //               )
+    //             ],
+    //           ),
+    //         ),
+    //       ],
+    //     ),
+    //   ),
+    // );
+    return const ShowMapTypePage();
   }
 
   Widget getListUI() {

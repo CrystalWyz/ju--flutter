@@ -22,8 +22,12 @@ dependencies:
   intl: ^0.17.0
   font_awesome_flutter: ^10.1.0
   flutter_rating_bar: ^4.0.1
-
-
+  # 百度地图
+  flutter_baidu_mapapi_map: ^3.6.0
+  flutter_baidu_mapapi_utils: ^3.6.0
+  flutter_baidu_mapapi_search: ^3.6.0
+  flutter_bmflocation: ^3.6.0
+  permission_handler: ^8.1.2
 
 dev_dependencies: 
   flutter_lints: ^2.0.0

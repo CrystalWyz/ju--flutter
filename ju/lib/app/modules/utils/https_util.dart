@@ -5,7 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 class HttpsUtil {
 
-  static String baseUrl = "http://59.110.34.78:8075";
+  static String baseUrl = "http://127.0.0.1:8075";
   static final cookieJar = CookieJar();
   static final options = BaseOptions(
     baseUrl: baseUrl,
