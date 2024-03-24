@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_baidu_mapapi_base/flutter_baidu_mapapi_base.dart';
 import 'package:flutter_baidu_mapapi_map/flutter_baidu_mapapi_map.dart';
+import 'package:ju/app/modules/bmap/map_base_page_state.dart';
 import 'package:ju/app/modules/hotel_bookin/hotel_app_theme.dart';
-import 'package:ju/app/modules/hotel_bookin/map_base_page_state.dart';
 
 /// 地图类型示例
 class ShowMapTypePage extends StatefulWidget {
