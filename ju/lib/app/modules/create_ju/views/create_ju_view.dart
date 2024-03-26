@@ -41,6 +41,21 @@ class CreateJuView extends GetView<CreateJuController> {
                 SizedBox(
                   height: 10.h,
                 ),
+                TextFormField(
+                  autofocus: true,
+                  controller: controller.locationController,
+                  decoration: const InputDecoration(
+                    labelText: "地点(集合点)",
+                    hintText: "地点(集合点)",
+                    icon: Icon(Icons.location_on_outlined),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15.0))),
+                  ),
+                  validator: (v) => v!.trim().isNotEmpty ? null : "目标地点是哪儿呢～",
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
                 SizedBox(
                     child: Row(
                       children: [
@@ -176,12 +191,14 @@ class CreateJuView extends GetView<CreateJuController> {
                                     "/api/v1/murderMysteries",
                                     data: {
                                       "title": controller.titleController.text,
+                                      "location":controller.locationController.text,
                                       "description":
                                       controller.contentController.text,
                                       "boyParticipantNum":
                                       controller.boyController.text,
                                       "girlParticipantNum":
                                       controller.girlController.text,
+                                      "tags": controller.selectedTags.map((e) => e!.tagName).toList(),
                                       "config": {
                                         "audit": controller.auditSwitch.value,
                                       }

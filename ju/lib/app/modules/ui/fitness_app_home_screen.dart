@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:ju/app/modules/home/views/murder_mystery_view.dart';
 import 'package:ju/app/modules/hotel_bookin/hotel_home_screen.dart';
 import 'package:ju/app/modules/my_diary/my_diary_screen.dart';
 import 'bottom_bar_view.dart';
 import '../model/tabIcon_data.dart';
 import 'fitness_app_theme.dart';
+import 'package:get/get.dart';
 
 class FitnessAppHomeScreen extends StatefulWidget {
   @override
@@ -78,7 +78,9 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
         ),
         BottomBarView(
           tabIconsList: tabIconsList,
-          addClick: () {},
+          addClick: () {
+            Get.toNamed("/create-ju");
+          },
           changeIndex: (int index) {
             if (index == 0 || index == 2) {
               animationController?.reverse().then<dynamic>((data) {
@@ -95,7 +97,7 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
                   return;
                 }
                 setState(() {
-                  tabBody = MyDiaryScreen();
+                  tabBody = MyDiaryScreen(animationController: animationController);
                 });
               });
             }

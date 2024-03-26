@@ -8,6 +8,7 @@ class CreateJuController extends GetxController {
 
   GlobalKey createJuKey = GlobalKey<FormState>();
   TextEditingController titleController = TextEditingController();
+  TextEditingController locationController = TextEditingController();
   TextEditingController contentController = TextEditingController();
   TextEditingController boyController = TextEditingController();
   TextEditingController girlController = TextEditingController();
@@ -38,6 +39,7 @@ class CreateJuController extends GetxController {
   @override
   void onClose() {
     titleController.dispose();
+    locationController.dispose();
     contentController.dispose();
     boyController.dispose();
     girlController.dispose();

@@ -10,6 +10,7 @@ import 'package:ju/app/modules/utils/bmap_util.dart';
 import 'package:ju/app/modules/utils/https_util.dart';
 import 'filters_screen.dart';
 import 'hotel_app_theme.dart';
+import 'package:get/get.dart';
 
 class HotelHomeScreen extends StatefulWidget {
   @override
@@ -143,7 +144,11 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                                             curve: Curves.fastOutSlowIn)));
                             animationController?.forward();
                             return HotelListView(
-                              callback: () {},
+                              callback: () {
+                                Get.toNamed(
+                                    "/murder-mystery-detail",
+                                    arguments: pageInfo[index].id);
+                              },
                               murderMysteryPageInfo: pageInfo[index],
                               animation: animation,
                               animationController: animationController!,
